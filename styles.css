@@ -1,0 +1,16 @@
+#nav01{
+    margin: 10px 10px;
+    border: 1px solid rgb(189, 180, 180);
+    border-radius: 10px;
+    position: sticky;
+    top: 20px;
+    left: 0px;
+}
+#btn1{
+    margin: auto;
+    padding: 8px 30px;
+    position: sticky;
+    position: fixed;
+    top: 90vh;
+    left: 90%;
+}
