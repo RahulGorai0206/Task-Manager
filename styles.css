@@ -8,9 +8,11 @@
 }
 #btn1{
     margin: auto;
-    padding: 8px 30px;
+    padding: 10px 20px;
     position: sticky;
     position: fixed;
-    top: 90vh;
-    left: 90%;
+    top: 80vh;
+    left: 80%;
+    font-size: 40px;
+    border-radius: 70px;
 }
