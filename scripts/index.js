@@ -10,8 +10,10 @@ const HtmlTaskContent = ({ id, title, description, type, url }) => `
 <div class="col-md-6 col-lg-4 mt-3" id=${id} key=${id}> 
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            ${url &&
-    `  <img src=${url} class="card-img-top md-3" alt="...">`
+            ${url ?
+    `  <img src=${url} height='150px' class="card-img-top md-3" alt="...">`
+    :
+        `<img src="https://matematego.com/assets/noimage-cf86abd9b579765c1131ec86cb1e70052199ddadfecf252e5cb98e50535d11f3.png" height='150px' class="card-img-top md-3" alt="...">`
     }
             <h4 class="card-title">${title}</h4>
             <p class='description trim-3-lines text-muted' data-gram_editor='flase'>${description}</p>
@@ -20,11 +22,11 @@ const HtmlTaskContent = ({ id, title, description, type, url }) => `
             </div>
         </div>
         <div class='card-footer'>
-        <button type=button class='btn btn-outline-primary float-right' data-bs-toggle='modal' data-bs-toggle='#ShowTask'>Open</button>
-        <button type=button class='btn btn-outline-info float-right' data-bs-toggle='modal' data-bs-toggle='#ShowTask'>
+        <button type=button class='btn btn-outline-primary float-right' data-bs-toggle='modal' data-bs-target="#ShowTask" id=${id} onclick='OpenTask.apply(this, arguments)'>Open</button> 
+        <button type=button class='btn btn-outline-info float-right' data-bs-toggle='modal' data-bs-target="#ShowTask">
             <i class='fas fa-pencil-alt'></i>
         </button>
-        <button type=button class='btn btn-outline-danger float-right' data-bs-toggle='modal' data-bs-toggle='#ShowTask'>
+        <button type=button class='btn btn-outline-danger float-right' data-bs-toggle='modal' data-bs-target="#ShowTask">
             <i class='fas fa-trash-alt'></i>
         </button>
         </div>
@@ -35,8 +37,10 @@ const HtmlModelContent = ({ id, title, description, type, url }) => {
     const date = new Date(parseInt(id))
     return `
     <div id=${id}>
-    ${url &&
-        `  <img src=${url} class="card-img-top md-3" alt="...">`
+    ${url ?
+        `  <img src=${url} class="card-img-top height='150px' md-3" alt="...">`
+        :
+        `<img src="https://matematego.com/assets/noimage-cf86abd9b579765c1131ec86cb1e70052199ddadfecf252e5cb98e50535d11f3.png" class="card-img-top md-3" height='150px' alt="...">`
         }
     <strong class-'text-muted>Created on ${date.toDateString()}</strong>
     <h2 class='my-3'>${title}</h2>
@@ -79,4 +83,10 @@ const HandleSubmit = (event) => {
     );
     state.taskList.push({...input,id})
     UpdateLocalStorage();
+};
+
+const OpenTask=(e)=>{
+    if(!e) e=window.event;
+    const GetTask=state.taskList.find(({id})=> id ===e.target.id);
+    taskModal.innerHTML=HtmlModelContent(GetTask);
 };
