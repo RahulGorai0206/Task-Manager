@@ -10,10 +10,9 @@ const HtmlTaskContent = ({ id, title, description, type, url }) => `
 <div class="col-md-6 col-lg-4 mt-3" id=${id} key=${id}> 
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            ${
-            url &&
-            `  <img src=${url} class="card-img-top md-3" alt="...">`
-            }
+            ${url &&
+    `  <img src=${url} class="card-img-top md-3" alt="...">`
+    }
             <h4 class="card-title">${title}</h4>
             <p class='description trim-3-lines text-muted' data-gram_editor='flase'>${description}</p>
             <div class='tags text-white d-flex flex-wrap'>
@@ -33,16 +32,51 @@ const HtmlTaskContent = ({ id, title, description, type, url }) => `
 </div>
 `;
 const HtmlModelContent = ({ id, title, description, type, url }) => {
-    const date=new Date(parseInt(id))
-    return`
+    const date = new Date(parseInt(id))
+    return `
     <div id=${id}>
-    ${
-        url &&
+    ${url &&
         `  <img src=${url} class="card-img-top md-3" alt="...">`
-    }
+        }
     <strong class-'text-muted>Created on ${date.toDateString()}</strong>
     <h2 class='my-3'>${title}</h2>
     <p>${description}</p>
     </div>
-    `
-}
+    `;
+};
+const UpdateLocalStorage = () => {
+    localStorage.setItem(
+        "tasks",
+        JSON.stringify({
+            tasks: state.taskList,
+        })
+    );
+};
+const LoadInitialData = () => {
+    const localStorageCopy = JSON.parse(localStorage.tasks);
+    if (localStorageCopy) state.taskList = localStorageCopy.tasks;
+    state.taskList.map((cardDate) => {
+        taskContents.insertAdjacentHTML("beforeend", HtmlTaskContent(cardDate))
+    });
+};
+
+const HandleSubmit = (event) => {
+    const id = `${Date.now()}`;
+    const input = {
+        url: document.getElementById('img').value,
+        title: document.getElementById('tasktitle').value,
+        type: document.getElementById('tag').value,
+        description: document.getElementById('taskdetails').value,
+    };
+    if(input.title===''|| input.description===''){
+        return;
+    }
+    taskContents.insertAdjacentHTML(
+        "beforeend", HtmlTaskContent({ 
+            ...input,       // it will now show the full object it will spread it video 25: 1hr 28mins also add another data
+            id,           
+        })
+    );
+    state.taskList.push({...input,id})
+    UpdateLocalStorage();
+};

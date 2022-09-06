@@ -11,8 +11,38 @@
     padding: 10px 20px;
     position: sticky;
     position: fixed;
-    top: 80vh;
-    left: 80%;
+    top: 85%;
+    left: 90%;
     font-size: 40px;
     border-radius: 70px;
+}
+@media only screen and (max-width:940px){
+#btn1{
+    top: 87%;
+    left: 87%;
+}
+}
+@media only screen and (max-width:730px){
+    #btn1{
+        top: 89%;
+        left: 85%;
+    }
+}
+@media only screen and (max-width:500px){
+    #btn1{
+        top: 89%;
+        left: 82%;
+    }
+}
+@media only screen and (max-width:450px){
+    #btn1{
+        top: 87%;
+        left: 75%;
+    }
+}
+@media only screen and (max-width:370px){
+    #btn1{
+        top: 87%;
+        left: 76%;
+    }
 }
