@@ -12,7 +12,7 @@
 <body style="margin: 20px;" onload="LoadInitialData()">
     <nav class="navbar bg-light shadow-lg" id="nav01">
         <div class="container-fluid">
-          <a class="navbar-brand">Task App</a>
+          <a class="navbar-brand">Your Tasks</a>
           <form class="d-flex col-lg-5" role="search">
             <input class="form-control me-2" type="search" placeholder="Search your tasks" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
@@ -21,22 +21,17 @@
       </nav>
 
                                                   <!-- Task List -->
-<div class="container">
-  <section class="mt-4"></section>
-  <section class="mt-4">
-    <div class="row task--contents"> 
+
+    <div class="task--contents"> 
         <!-- We will add the html code in this position via templete litrels -->
     </div>
-  </section>
-</div>
 
                                                   <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title" id="staticBackdropLabel">Fill Task Details</h5>
         </div>
         <div class="modal-body">
           <form>    <!---  or u can do this <form onsubmit="return false">- -->

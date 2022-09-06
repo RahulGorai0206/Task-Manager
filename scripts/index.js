@@ -7,11 +7,11 @@ const taskModal = document.querySelector(".task--modal--body"); // "  "  "  "
 
 
 const HtmlTaskContent = ({ id, title, description, type, url }) => `
-<div class="col-md-6 col-lg-4 mt-3" id=${id} key=${id}> 
+<div class="col mt-5 " id=${id} key=${id}> 
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             ${url ?
-    `  <img src=${url} height='150px' class="card-img-top md-3" alt="...">`
+    `  <img src=${url} height='150px' class="card-img-top" alt="...">`
     :
         `<img src="https://matematego.com/assets/noimage-cf86abd9b579765c1131ec86cb1e70052199ddadfecf252e5cb98e50535d11f3.png" height='150px' class="card-img-top md-3" alt="...">`
     }
@@ -26,7 +26,7 @@ const HtmlTaskContent = ({ id, title, description, type, url }) => `
         <button type=button class='btn btn-outline-info float-right' data-bs-toggle='modal' data-bs-target="#ShowTask">
             <i class='fas fa-pencil-alt'></i>
         </button>
-        <button type=button class='btn btn-outline-danger float-right' data-bs-toggle='modal' data-bs-target="#ShowTask">
+        <button type=button class='btn btn-outline-danger float-right' name=${id} onclick="DeleteTask.apply(this, arguments) ">
             <i class='fas fa-trash-alt'></i>
         </button>
         </div>
@@ -42,7 +42,7 @@ const HtmlModelContent = ({ id, title, description, type, url }) => {
         :
         `<img src="https://matematego.com/assets/noimage-cf86abd9b579765c1131ec86cb1e70052199ddadfecf252e5cb98e50535d11f3.png" class="card-img-top md-3" height='150px' alt="...">`
         }
-    <strong class-'text-muted>Created on ${date.toDateString()}</strong>
+    <strong class='text-muted md-3'>Created on ${date.toDateString()}</strong>
     <h2 class='my-3'>${title}</h2>
     <p>${description}</p>
     </div>
@@ -89,4 +89,21 @@ const OpenTask=(e)=>{
     if(!e) e=window.event;
     const GetTask=state.taskList.find(({id})=> id ===e.target.id);
     taskModal.innerHTML=HtmlModelContent(GetTask);
+};
+
+const DeleteTask=(e)=>{
+    if (!e) e=window.event;
+    const TargetID=e.target.getAttribute("name");
+    const type=e.target.tagName; // get element type
+    const RemoveTask=state.taskList.filter(({id})=> id !== TargetID);
+    state.taskList=RemoveTask;
+    UpdateLocalStorage();
+    if(type==="BUTTON"){
+        return e.target.parentNode.parentNode.parentNode.parentNode.removeChild(
+            e.target.parentNode.parentNode.parentNode
+        );
+    }
+    return e.target.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(
+        e.target.parentNode.parentNode.parentNode.parentNode
+    );
 };
