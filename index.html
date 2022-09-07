@@ -14,8 +14,7 @@
         <div class="container-fluid">
           <a class="navbar-brand">Your Tasks</a>
           <form class="d-flex col-lg-5" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search your tasks" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2" type="search" placeholder="Search your tasks" aria-label="Search" oninput="Search.apply(this, arguments)">
           </form>
         </div>
       </nav>

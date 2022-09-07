@@ -181,3 +181,18 @@ SaveEdit=(e)=>{
     submitbutton.setAttribute("data-bs-target","#ShowTask");
     submitbutton.innerHTML="Open";
 }
+
+Search=(e)=>{
+    if(!e) e=window.event;
+
+    while (taskContents.firstChild) {
+        taskContents.removeChild(taskContents.firstChild);
+      }
+    const ResultData=state.taskList.filter(({title})=>{
+        return title.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+
+    ResultData.map((cardData)=>{
+        taskContents.insertAdjacentHTML("beforeend",HtmlTaskContent(cardData));
+    });
+};
