@@ -111,6 +111,7 @@ const DeleteTask=(e)=>{
 const EditTask=(e)=>{
     if(!e) e=window.event;
 
+    window.alert("Tap on the text that you want to edit..")
     const TargetID=e.target.id;
     const type=e.target.tagName;
     let parentNode;
